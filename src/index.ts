@@ -3,7 +3,7 @@ import { chromium } from 'playwright-core';
 (async () => {
   const browser = await chromium.launch({
     channel: 'chrome', 
-    headless: false,
+    headless: true,
   });
   const event_url = process.argv[2];
   const page = await browser.newPage();
