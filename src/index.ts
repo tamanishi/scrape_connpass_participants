@@ -24,9 +24,14 @@ import { chromium } from 'playwright-core';
     await page.goto(`${participant_url}?page=${i + 1}`); 
 
     const names = await page.locator('.display_name');
-    const names_cnt = await names.count();
     for (let j = 0; j < await names?.count(); j++) {
-      const user_url = await names.nth(j).evaluate(elm => elm.children[0].getAttribute('href'));
+      const user_url = await names.nth(j).evaluate(elm => {
+        if (elm.children[0] === undefined) {
+          return '';
+        } else {
+          return elm.children[0].getAttribute('href');
+        }
+      });
       const name = await names.nth(j).innerText();
       console.log(name + ',' + user_url);
     }
