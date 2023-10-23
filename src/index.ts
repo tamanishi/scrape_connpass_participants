@@ -3,12 +3,12 @@ import { chromium } from 'playwright-core';
 (async () => {
   const browser = await chromium.launch({
     channel: 'chrome', 
-    headless: true,
+    headless: false,
   });
   const event_url = process.argv[2];
   const page = await browser.newPage();
   await page.goto(`${event_url}participation/`);
-  await page.getByRole('link', { name: 'More', exact: true }).click();
+  await page.getByRole('link', { name: 'More', exact: true }).first().click();
   const pages = await page.locator('.paging_area > ul > li');
   const pages_cnt = await pages.count();
   let last_page = 0;
