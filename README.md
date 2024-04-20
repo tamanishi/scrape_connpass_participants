@@ -4,7 +4,7 @@
 
 ``` sh
 npm run build
-npm run screape <event_url>
+npm run scrape <event_url>
 ```
 
 ## output
